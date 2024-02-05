@@ -85,6 +85,19 @@
 
 }
 
+/* Comment Card */
+
+.comments-list {
+  text-align: left;
+  margin: 50px auto;
+}
+
+.comment-card {
+  margin: 50px 0 0 0;
+  text-align: left;
+  border-top: 1px solid rgb(31, 221, 104);
+}
+
 
 
 /* desktop & tablet */
@@ -101,8 +114,14 @@
     text-align: left;
   }
 
-  .read-article {
+  .read-article, .comments-list {
     max-width: 700px;
+    box-sizing: border-box;
+    margin: auto;
+  }
+
+  .comments-list {
+    margin-top: 50px ;
   }
   
 }

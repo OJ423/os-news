@@ -27,3 +27,15 @@ export function fetchArticleById(id) {
     return err
   })
 }
+
+export function fetchCommentsByArticleId(article_id) {
+  return instance
+  .get(`articles/${article_id}/comments`)
+  .then((response) => {
+    return response.data.comments
+  })
+  .catch((err) => {
+    console.log(err)
+    return err
+  })
+}
