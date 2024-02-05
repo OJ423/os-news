@@ -1,9 +1,16 @@
+import { Link } from 'react-router-dom'
+
+
 export default function ArticleListItem({article}) {
+
+
   return( 
     <section className="article-list-item">
+      <Link to={`/articles/${article.article_id}`}>
       <img src={article.article_img_url} alt={`${article.title} cover image`} />
+      </Link>
       <div>
-        <h2>{article.title}</h2>
+      <Link to={`/articles/${article.article_id}`} ><h2>{article.title}</h2></Link>
         <p className="meta">{article.topic}</p>
         <div className="meta">{article.comment_count} comments</div>
         <div className="meta">{article.votes} votes</div>
