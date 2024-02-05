@@ -15,7 +15,6 @@ export function ReadArticle() {
       setIsLoading(false)
     })
   },[article_id])
-  console.log(selectedArticle)
 
   return (<>
   {isLoading ? <p>Loading article.</p> :

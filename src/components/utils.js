@@ -1,8 +1,12 @@
 import axios from 'axios'
 
+const instance = axios.create({
+  baseURL: 'https://news-service-api.onrender.com/api/'
+});
+
 export function fetchArticles() {
-  return axios
-  .get('https://news-service-api.onrender.com/api/articles')
+  return instance
+  .get('articles')
   .then((response) => {
     return response.data.articles
   })
@@ -13,8 +17,8 @@ export function fetchArticles() {
 }
 
 export function fetchArticleById(id) {
-  return axios
-  .get(`https://news-service-api.onrender.com/api/articles/${id}`)
+  return instance
+  .get(`articles/${id}`)
   .then((response) => {
     return response.data.article
   })
