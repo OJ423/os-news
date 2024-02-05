@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+p {
+  font-size: 2rem;
+}
+
 /* Navigation */
 
 .navigation-bar {
@@ -65,10 +69,27 @@
   border-bottom: dashed 2px rgb(31, 221, 104);
 }
 
+/* Read Article */
+
+.read-article p {
+  text-align: left;
+}
+
+.read-article img {
+  border-radius: 5px;
+  margin: 20px auto;
+
+}
+
+
 
 /* desktop & tablet */
 
 @media only screen and (min-width: 768px) {
+
+  p {
+    font-size: 1rem;
+  }
 
   .article-list-item {
     width: 700px;
@@ -77,6 +98,10 @@
     align-items: center;
     gap: 50px;
     text-align: left;
+  }
+
+  .read-article {
+    max-width: 700px;
   }
   
 }
