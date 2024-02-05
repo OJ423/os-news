@@ -4,3 +4,79 @@
   padding: 2rem;
   text-align: center;
 }
+
+/* Navigation */
+
+.navigation-bar {
+  padding-left: 0;
+}
+
+.navigation-bar li {
+  display: inline-block;
+  list-style: none;
+
+}
+
+.navigation-bar li a {
+  color: #242424;
+  display: block;
+  padding: 5px 10px;
+  margin: 5px 10px;
+  background: rgb(31, 221, 104);
+  border-radius: 5px;
+  transition: 0.5s;
+}
+
+.navigation-bar li a:hover {
+  color: rgb(31, 221, 104);
+  background-color: black;
+  transition: 0.5s;
+}
+
+/* Articles List */
+
+.article-list-item {
+  display: grid;
+  grid-template-columns: auto;
+  margin-bottom: 40px;
+}
+
+.article-list-item img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.article-list-item h2 {
+  font-size: 1rem;
+}
+
+.meta {
+  display: inline-block;
+  margin: 5px 10px;
+  padding: 5px 10px;
+  background: rgb(31, 221, 104);
+  color: #242424;
+  border-radius: 5px;
+}
+
+.date {
+  display: inline-block;
+  padding-bottom: 10px;
+  border-bottom: dashed 2px rgb(31, 221, 104);
+}
+
+
+/* desktop & tablet */
+
+@media only screen and (min-width: 768px) {
+
+  .article-list-item {
+    width: 700px;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    align-items: center;
+    gap: 50px;
+    text-align: left;
+  }
+  
+}
