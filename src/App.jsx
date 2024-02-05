@@ -1,10 +1,11 @@
 import './App.css'
+import Manager from './components/Manager'
 
 function App() {
 
   return (
     <>
-      <p>Hello OS News</p>
+      <Manager />
     </>
   )
 }
