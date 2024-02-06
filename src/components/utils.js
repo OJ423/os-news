@@ -71,4 +71,12 @@ export function postNewComment(article_id, body) {
   .then((response) => {
     return response.data.comments
   })
-} 
+}
+
+export function deleteComment(comment_id) {
+  return instance
+  .delete(`comments/${comment_id}`)
+  .then((response) => {
+    return "Comment deleted"
+  })
+}
