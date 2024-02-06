@@ -28,7 +28,7 @@ export default function Manager() {
     .catch((err) => {
       setErr("Something went wrong fetching the data. Please refresh and try again.")
     })
-  },[articlesList])
+  },[])
   return (<>
   {err ? <p>{err}</p> :
   <>

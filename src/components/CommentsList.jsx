@@ -22,8 +22,7 @@ export default function CommentsList({selectedArticle}) {
   function handleAddComment() {
     setNewComment(true)
   }
-  // Going to add Comments for dependent on state so the form (separate component) appears on the same page.
-  // Have to sort login so only logged in users can vote.
+
   return (
     <>
   {isLoading ? <p>Comments loading</p> : 
@@ -32,7 +31,7 @@ export default function CommentsList({selectedArticle}) {
     {userLogin.length ? <> 
     {newComment ? <AddComment setNewComment={setNewComment} selectedArticle={selectedArticle} setComments={setComments}/> : <button onClick={handleAddComment}>Add Comment</button> } </>: null }
     {comments.map((comment) => (
-      <CommentsItem key={comment.comment_id} comment={comment}/>
+      <CommentsItem key={comment.comment_id} comment={comment} selectedArticle={selectedArticle}/>
     ))}
   </section>
 
