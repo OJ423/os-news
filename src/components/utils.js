@@ -39,3 +39,12 @@ export function fetchCommentsByArticleId(article_id) {
     return err
   })
 }
+
+export function patchArticleVote(article_id, vote) {
+  return instance
+  .patch(`articles/${article_id}`,
+  {"inc_votes": vote})
+  .then((response) => {
+    return response.data.article
+  })
+}

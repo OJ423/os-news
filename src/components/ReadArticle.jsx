@@ -20,7 +20,7 @@ export function ReadArticle() {
   return (<>
   {isLoading ? <p>Loading article.</p> :
   <>
-  <ArticleDetail selectedArticle={selectedArticle} />
+  <ArticleDetail selectedArticle={selectedArticle} setSelectedArticle={setSelectedArticle} />
   <CommentsList selectedArticle={selectedArticle}/>
   </>
   }
