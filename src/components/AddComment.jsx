@@ -8,6 +8,7 @@ export default function AddComment({setNewComment, setComments, selectedArticle}
   const [err, setErr] = useState(null)
   
   const handleCommentBody = (event) => setNewCommentBody(event.target.value)
+  
   function handleAddNewComment(event) {
     event.preventDefault()
     postNewComment(selectedArticle.article_id, {"username":userLogin[0].username, "body": newCommentBody})
@@ -20,8 +21,7 @@ export default function AddComment({setNewComment, setComments, selectedArticle}
     })
     .catch((err) => {
       setErr("Sorry something seems to have gone wrong. Try refreshing the page to see if you were successful.")
-    })
-    
+    }) 
   } 
 
   useEffect(() => {

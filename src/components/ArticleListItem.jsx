@@ -11,7 +11,7 @@ export default function ArticleListItem({article}) {
       </Link>
       <div>
       <Link to={`/articles/${article.article_id}`} ><h2>{article.title}</h2></Link>
-        <div className="meta">{article.topic}</div>
+        <Link to={`/${article.topic}/articles`}><div className="meta">{article.topic}</div></Link>
         <div className="meta">{article.comment_count} comments</div>
         <div className="meta">{article.votes} votes</div>
         <p className="date">{article.created_at.slice(0,10)}</p>
