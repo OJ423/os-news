@@ -6,13 +6,12 @@ import Navigation from './Navigation'
 import Login from './Login'
 import TopicsList from './TopicsList'
 import { ReadArticle } from './ReadArticle'
-import { fetchArticles, fetchTopics, fetchUsers } from './utils'
+import { fetchArticles, fetchTopics } from './utils'
 import LoginContext from './context/LoginContext'
 import TopicLanding from './TopicLanding'
 
 export default function Manager() {
   const [articlesList, setArticlesList] = useState([])
-  const [users, setUsers] = useState([]);
   const [userLogin, setUserLogin] = useState([]);
   const [topics, setTopics] = useState([])
   const [isLoading, setIsLoading] = useState(true)
@@ -23,10 +22,6 @@ export default function Manager() {
     .then((responseArticles) => {
       setArticlesList(responseArticles)
       setIsLoading(false)
-    })
-    fetchUsers()
-    .then((responseUsers) => {
-      setUsers(responseUsers)
     })
     fetchTopics()
     .then((responseTopics) => {
@@ -46,7 +41,7 @@ export default function Manager() {
     <Route path='/' element={<Home />}/>
     <Route path='/articles' element={<ArticlesList articlesList={articlesList} isLoading={isLoading}/>} />
     <Route path='/articles/:article_id' element={<ReadArticle />}/>
-    <Route path='/login' element={<Login users={users} />}  />
+    <Route path='/login' element={<Login />}  />
     <Route path='/topics' element={<TopicsList topics={topics}/>} />
     <Route path='/:topic/articles' element={<TopicLanding />} />
   </Routes>

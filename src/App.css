@@ -151,6 +151,19 @@
   transition: 0.5s;
 }
 
+/* Login */
+
+.login-container input {
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  margin: 10px 0 20px 0;
+  border-radius: 5px;
+  text-align: center;
+}
+
+
+
 /* Errors and Alerts */
 
 .error-message {
@@ -197,12 +210,16 @@
   }
 
   .topics-container {
-    max-width: 700px;
+    max-width: 500px;
   }
 
   .topics-grid {
     grid-template-columns: 50% 50%;
     gap: 40px;
+  }
+
+  .login-container {
+    max-width: 500px;
   }
   
 }
