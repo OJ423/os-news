@@ -15,7 +15,7 @@ export default function AddVote({selectedArticle, setVoteCount}) {
     })
     .catch((err) => {
       setVoteCount((currentVoteCount) => currentVoteCount -1)
-      setErr('Something went wrong, please try again')
+      setErr('Something went wrong, please refresh the page & try again')
     })
   }
 
@@ -28,7 +28,7 @@ export default function AddVote({selectedArticle, setVoteCount}) {
     })
     .catch((err) => {
       setVoteCount((currentVoteCount) => currentVoteCount +1)
-      setErr('Something went wrong, please try again')
+      setErr('Something went wrong, please refresh the page & try again')
     })
   }
 

@@ -98,6 +98,19 @@
   border-top: 1px solid rgb(31, 221, 104);
 }
 
+/* Error Messages */
+
+.error-message {
+  display: inline-block;
+  margin: auto;
+  background-color: lightpink;
+  color: brown;
+  padding: 10px;
+  border: brown solid 2px;
+  border-radius: 5px;
+  font-size: 0.8rem;
+}
+
 
 
 /* desktop & tablet */
