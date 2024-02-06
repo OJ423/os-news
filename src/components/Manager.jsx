@@ -3,15 +3,18 @@ import { useEffect, useState } from 'react'
 import ArticlesList from './ArticlesList'
 import Home from './Home'
 import Navigation from './Navigation'
-import { fetchArticles, fetchUsers } from './utils'
-import { ReadArticle } from './ReadArticle'
-import LoginContext from './context/LoginContext'
 import Login from './Login'
+import TopicsList from './TopicsList'
+import { ReadArticle } from './ReadArticle'
+import { fetchArticles, fetchTopics, fetchUsers } from './utils'
+import LoginContext from './context/LoginContext'
+import TopicLanding from './TopicLanding'
 
 export default function Manager() {
   const [articlesList, setArticlesList] = useState([])
   const [users, setUsers] = useState([]);
   const [userLogin, setUserLogin] = useState([]);
+  const [topics, setTopics] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [err, setErr] = useState(null)
 
@@ -25,10 +28,15 @@ export default function Manager() {
     .then((responseUsers) => {
       setUsers(responseUsers)
     })
+    fetchTopics()
+    .then((responseTopics) => {
+      setTopics(responseTopics)
+    })
     .catch((err) => {
       setErr("Something went wrong fetching the data. Please refresh and try again.")
     })
   },[])
+
   return (<>
   {err ? <p>{err}</p> :
   <>
@@ -39,6 +47,8 @@ export default function Manager() {
     <Route path='/articles' element={<ArticlesList articlesList={articlesList} isLoading={isLoading}/>} />
     <Route path='/articles/:article_id' element={<ReadArticle />}/>
     <Route path='/login' element={<Login users={users} />}  />
+    <Route path='/topics' element={<TopicsList topics={topics}/>} />
+    <Route path='/:topic/articles' element={<TopicLanding />} />
   </Routes>
   </LoginContext.Provider>
   </>

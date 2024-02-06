@@ -121,6 +121,36 @@
   transition: 0.5s;
 }
 
+/* Topics */
+
+.topics-container {
+  cursor: pointer;
+}
+
+.topics-grid {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 20px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.topic-card {
+  padding: 10px;
+  border: inset 8px rgb(31, 221, 104);
+  border-radius:  5px;
+  transition: 0.5s;
+}
+
+.topic-card h3 {
+  margin-top: 0;
+}
+
+.topic-card:hover {
+  border: inset 8px rgb(40, 103, 64);
+  transition: 0.5s;
+}
+
 /* Errors and Alerts */
 
 .error-message {
@@ -164,6 +194,15 @@
 
   .comments-list {
     margin-top: 50px ;
+  }
+
+  .topics-container {
+    max-width: 700px;
+  }
+
+  .topics-grid {
+    grid-template-columns: 50% 50%;
+    gap: 40px;
   }
   
 }

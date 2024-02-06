@@ -6,9 +6,13 @@ const instance = axios.create({
 
 // Articles
 
-export function fetchArticles() {
-  return instance
-  .get('articles')
+export function fetchArticles(filter = null) {
+  let filterQuery = null
+  if(filter) {
+    filterQuery = `?${Object.keys(filter)}=${Object.values(filter)}`
+  }
+   return instance
+  .get(`articles${filterQuery ? filterQuery : "" }`)
   .then((response) => {
     return response.data.articles
   })
@@ -78,5 +82,14 @@ export function deleteComment(comment_id) {
   .delete(`comments/${comment_id}`)
   .then((response) => {
     return "Comment deleted"
+  })
+}
+// Topics
+
+export function fetchTopics() {
+  return instance
+  .get('topics')
+  .then((response) => {
+    return response.data.topics
   })
 }
