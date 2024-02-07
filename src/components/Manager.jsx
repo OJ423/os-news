@@ -23,7 +23,7 @@ export default function Manager() {
   //Sort & Order
   const [searchParams, setSearchParams] = useSearchParams("")
   const sortByQuery = searchParams.get("sort_by")
-
+  const orderQuery = searchParams.get("order")
 
   useEffect(() => {
     fetchArticles({"sort_by": sortByQuery})
@@ -52,11 +52,11 @@ export default function Manager() {
   {err ? <p>{err}</p> :
   <Routes>
     <Route path='/' element={<Home />}/>
-    <Route path='/articles' element={<ArticlesList articlesList={articlesList} isLoading={isLoading} />} />
+    <Route path='/articles' element={<ArticlesList articlesList={articlesList} isLoading={isLoading} searchParams={searchParams} setSearchParams={setSearchParams}/>} />
     <Route path='/articles/:article_id' element={<ReadArticle />}/>
     <Route path='/login' element={<Login />}  />
     <Route path='/topics' element={<TopicsList topics={topics} />} />
-    <Route path='/:topic/articles' element={<TopicLanding sortByQuery={sortByQuery} err={err}/>} />      console.log(responseArticles)
+    <Route path='/:topic/articles' element={<TopicLanding sortByQuery={sortByQuery} orderQuery={orderQuery} setSearchParams={setSearchParams} searchParams={searchParams} />} />
     <Route path='*' element={<ErrorPage/>} />
   </Routes>
 }
