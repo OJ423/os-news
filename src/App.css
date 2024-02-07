@@ -193,6 +193,16 @@
   font-style: italic;
 }
 
+.four-oh-four-container {
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.four-oh-four-container img {
+  border-radius: 5px;
+  max-width: 100%;
+}
+
 
 
 /* desktop & tablet */
@@ -228,8 +238,10 @@
     gap: 40px;
   }
 
-  .login-container {
+  .login-container, .four-oh-four-container {
     max-width: 500px;
   }
+
+  
   
 }

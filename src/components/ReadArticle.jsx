@@ -8,6 +8,7 @@ export function ReadArticle() {
   const {article_id} = useParams()
   const [selectedArticle, setSelectedArticle] = useState()
   const [isLoading, setIsLoading] = useState(true)
+  const [err, setErr] = useState(null)
   
   useEffect(() => {
     fetchArticleById(article_id)
@@ -15,10 +16,16 @@ export function ReadArticle() {
       setSelectedArticle(apiResponse)
       setIsLoading(false)
     })
+    .catch((err) => {
+      setErr(err.response.data.msg)
+      setIsLoading(false)
+
+    })
   },[article_id])
 
   return (<>
   {isLoading ? <p>Loading article.</p> :
+  err ? <p className='error-message'>{err}</p> :
   <>
   <ArticleDetail selectedArticle={selectedArticle} setSelectedArticle={setSelectedArticle} />
   <CommentsList selectedArticle={selectedArticle}/>

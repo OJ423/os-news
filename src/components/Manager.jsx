@@ -5,6 +5,7 @@ import Home from './Home'
 import Navigation from './Navigation'
 import Login from './Login'
 import TopicsList from './TopicsList'
+import ErrorPage from './ErrorPage'
 import { ReadArticle } from './ReadArticle'
 import { fetchArticles, fetchTopics } from './utils'
 import LoginContext from './context/LoginContext'
@@ -27,9 +28,14 @@ export default function Manager() {
   useEffect(() => {
     fetchArticles({"sort_by": sortByQuery})
     .then((responseArticles) => {
+      if(responseArticles === 400) setErr("Please search something better")
       setArticlesList(responseArticles)
       setIsLoading(false)
     })
+    .catch((err) => {
+      setErr(err.response.data.msg)
+    })
+
     fetchTopics()
     .then((responseTopics) => {
       setTopics(responseTopics)
@@ -40,20 +46,21 @@ export default function Manager() {
   },[sortByQuery])
 
   return (<>
-  {err ? <p>{err}</p> :
   <>
   <LoginContext.Provider value={{ userLogin, setUserLogin }}>
   <Navigation />
+  {err ? <p>{err}</p> :
   <Routes>
     <Route path='/' element={<Home />}/>
     <Route path='/articles' element={<ArticlesList articlesList={articlesList} isLoading={isLoading} />} />
     <Route path='/articles/:article_id' element={<ReadArticle />}/>
     <Route path='/login' element={<Login />}  />
     <Route path='/topics' element={<TopicsList topics={topics} />} />
-    <Route path='/:topic/articles' element={<TopicLanding sortByQuery={sortByQuery} />} />
+    <Route path='/:topic/articles' element={<TopicLanding sortByQuery={sortByQuery} err={err}/>} />      console.log(responseArticles)
+    <Route path='*' element={<ErrorPage/>} />
   </Routes>
+}
   </LoginContext.Provider>
   </>
-  }
   </>)
 }

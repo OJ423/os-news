@@ -34,7 +34,7 @@ export default function AddComment({setNewComment, setComments, selectedArticle}
         <h3>Add your comment below...</h3>
         <form className="add-comment-form" onSubmit={handleAddNewComment}>
           <label htmlFor="comment-body"></label>
-          <textarea id="comment-body" rows={"10"} columns={"12"} value={newCommentBody} onChange={handleCommentBody} ></textarea>
+          <textarea id="comment-body" rows={"10"} columns={"12"} required value={newCommentBody} onChange={handleCommentBody} ></textarea>
           <button>Submit</button>
         </form>
         </>
