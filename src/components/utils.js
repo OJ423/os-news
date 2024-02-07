@@ -6,16 +6,6 @@ const instance = axios.create({
 
 // Articles
 
-// if (topic.topic !== undefined && sort.sort_by !== null ) {
-//   Query = `?${Object.keys(topic)}=${Object.values(topic)}&${Object.keys(sort)}=${Object.values(sort)}`
-// }
-// else if(sort.sort_by !== null && topic.topic === undefined) {
-//   Query = `?${Object.keys(sort)}=${Object.values(sort)}`
-// }
-// else if (sort.sort_by === null && topic.topic !== undefined) {
-//   Query = `?${Object.keys(topic)}=${Object.values(topic)}`
-// }
-
 export function fetchArticles(sort = null) {
   let Query = null
   if (sort.sort_by !== null ) {
@@ -25,11 +15,8 @@ export function fetchArticles(sort = null) {
    return instance
   .get(`articles${Query ? Query : "" }`)
   .then((response) => {
+    if(response.status === 400) return 400
     return response.data.articles
-  })
-  .catch((err) => {
-    console.log(err)
-    return err
   })
 }
 
@@ -57,10 +44,6 @@ export function fetchArticleById(id) {
   .get(`articles/${id}`)
   .then((response) => {
     return response.data.article
-  })
-  .catch((err) => {
-    console.log(err)
-    return err
   })
 }
 
@@ -90,10 +73,6 @@ export function fetchCommentsByArticleId(article_id) {
   .get(`articles/${article_id}/comments`)
   .then((response) => {
     return response.data.comments
-  })
-  .catch((err) => {
-    console.log(err)
-    return err
   })
 }
 

@@ -10,6 +10,7 @@ export default function CommentsList({selectedArticle}) {
   const {userLogin} = useContext(LoginContext)
   const [isLoading, setIsLoading] = useState(true)
   const [newComment, setNewComment] = useState(false)
+  const [err, setErr] = useState(null)
 
   useEffect(() => {
     fetchCommentsByArticleId(selectedArticle.article_id)
@@ -17,7 +18,11 @@ export default function CommentsList({selectedArticle}) {
       setComments(apiResponse)
       setIsLoading(false)
     })
-  },[article_id])
+    .catch((err) => {
+      setErr(err.response.data.msg)
+      setIsLoading(false)
+    })
+  },[article_id] )
 
   function handleAddComment() {
     setNewComment(true)
@@ -25,17 +30,17 @@ export default function CommentsList({selectedArticle}) {
 
   return (
     <>
-  {isLoading ? <p>Comments loading</p> : 
-  <section className="comments-list">
-  <h2>Comments</h2>
-    {userLogin.length ? <> 
-    {newComment ? <AddComment setNewComment={setNewComment} selectedArticle={selectedArticle} setComments={setComments}/> : <button onClick={handleAddComment}>Add Comment</button> } </>: null }
-    {comments.map((comment) => (
-      <CommentsItem key={comment.comment_id} comment={comment} selectedArticle={selectedArticle}/>
-    ))}
-  </section>
-
-  }
+    {isLoading ? <p>Comments loading</p> : 
+    err ? <p className="error-message">{err}</p> :
+    <section key="comments-list" className="comments-list">
+    <h2>Comments</h2>
+      {userLogin.length ? <> 
+      {newComment ? <AddComment setNewComment={setNewComment} selectedArticle={selectedArticle} setComments={setComments}/> : <button onClick={handleAddComment}>Add Comment</button> } </>: null }
+      {comments.map((comment) => (
+        <CommentsItem key={comment.comment_id} comment={comment} selectedArticle={selectedArticle}/>
+      ))}
+    </section>
+    }
   </>
   )
 }

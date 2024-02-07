@@ -19,7 +19,9 @@ export default function TopicLanding({sortByQuery}) {
       setIsLoading(false)
     })
     .catch((err) => {
-      setErr("Something went wrong. Please fresh to try again.")
+      console.log(err.response.data.msg)
+      setErr(err.response.data.msg)
+      setIsLoading(false)
     })
   }, [sortByQuery])
 
