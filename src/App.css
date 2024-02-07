@@ -162,13 +162,60 @@
   text-align: center;
 }
 
+/* Profile */
+
+.profile-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items:center;
+  padding: 30px;
+  gap: 50px;
+  max-width: 700px;
+  border: solid 2px rgb(31, 221, 104);
+  border-radius: 5px;
+  text-align: left;
+  box-sizing: border-box;
+  margin: 50px 0 100px 0;
+}
+
+.profile-container img {
+  width: 100%;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.profile-container h3, p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 30px 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.profile-container h3 {
+  border-bottom: dashed 1px rgb(31, 221, 104);
+}
+
+.profile-detail {
+  max-width: 100%;
+}
+
+
 /* Sort  */
 
-.sort-container button, .sort-container button h3 {
+.sort-container {
+  align-items: center;
+  padding: 10px;
+  /* display: grid;
+  grid-template-columns: auto auto auto auto auto; */
+  margin: 30px;
+}
+
+.sort-container button, .sort-container button, .sort-container h3 {
   font-size: 0.7rem;
   margin: 5px;
   display: inline-block;
-  margin-bottom: 30px;
+
 }
 
 

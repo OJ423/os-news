@@ -1,12 +1,18 @@
-import { Link } from "react-router-dom"
+import { useContext } from "react"
+import { NavLink } from "react-router-dom"
+import LoginContext from "./context/LoginContext"
 
 export default function Navigation(){
+  const {userLogin, setUserLogin} = useContext(LoginContext)
   return( 
     <ul className="navigation-bar">
-      <li><Link to="/">Home</Link></li>
-      <li><Link to="/articles">Articles</Link></li>
-      <li><Link to="/topics">Topics</Link></li>
-      <li><Link to="/login">Login</Link></li>
+      <li><NavLink to="/">Home</NavLink></li>
+      <li><NavLink to="/articles">Articles</NavLink></li>
+      <li><NavLink to="/topics">Topics</NavLink></li>
+    {userLogin.length ?
+      <li><NavLink to="/profile">Profile</NavLink></li> :
+      <li><NavLink to="/login">Login</NavLink></li>
+    }
     </ul>
   )
 }

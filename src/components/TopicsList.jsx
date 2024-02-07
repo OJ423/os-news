@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom"
 
 export default function TopicsList({topics}) {
-  function handleRedirect(topic) {
-    <Link to={`/articles/${topic}`}>Hello</Link>
-  }
+
   return (
     <>
     <section className="topics-container">

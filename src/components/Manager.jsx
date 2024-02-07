@@ -1,4 +1,4 @@
-import {Routes, Route, useSearchParams, useParams} from 'react-router-dom'
+import {Routes, Route, useSearchParams} from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import ArticlesList from './ArticlesList'
 import Home from './Home'
@@ -6,6 +6,7 @@ import Navigation from './Navigation'
 import Login from './Login'
 import TopicsList from './TopicsList'
 import ErrorPage from './ErrorPage'
+import Profile from './Profile'
 import { ReadArticle } from './ReadArticle'
 import { fetchArticles, fetchTopics } from './utils'
 import LoginContext from './context/LoginContext'
@@ -26,7 +27,7 @@ export default function Manager() {
   const orderQuery = searchParams.get("order")
 
   useEffect(() => {
-    fetchArticles({"sort_by": sortByQuery})
+    fetchArticles(sortByQuery, orderQuery)
     .then((responseArticles) => {
       if(responseArticles === 400) setErr("Please search something better")
       setArticlesList(responseArticles)
@@ -43,7 +44,7 @@ export default function Manager() {
     .catch((err) => {
       setErr("Something went wrong fetching the data. Please refresh and try again.")
     })
-  },[sortByQuery])
+  },[sortByQuery, orderQuery])
 
   return (<>
   <>
@@ -51,13 +52,14 @@ export default function Manager() {
   <Navigation />
   {err ? <p>{err}</p> :
   <Routes>
-    <Route path='/' element={<Home />}/>
-    <Route path='/articles' element={<ArticlesList articlesList={articlesList} isLoading={isLoading} searchParams={searchParams} setSearchParams={setSearchParams}/>} />
+    <Route path='*' element={<ErrorPage/>} />
+    <Route path='/' element={<Home topics={topics} />}/>
+    <Route path='/articles' element={<ArticlesList articlesList={articlesList} sortByQuery={sortByQuery} isLoading={isLoading} searchParams={searchParams} setSearchParams={setSearchParams}/>} />
     <Route path='/articles/:article_id' element={<ReadArticle />}/>
-    <Route path='/login' element={<Login />}  />
     <Route path='/topics' element={<TopicsList topics={topics} />} />
     <Route path='/:topic/articles' element={<TopicLanding sortByQuery={sortByQuery} orderQuery={orderQuery} setSearchParams={setSearchParams} searchParams={searchParams} />} />
-    <Route path='*' element={<ErrorPage/>} />
+    <Route path='/login' element={<Login />}  />
+    <Route path='/profile' element={<Profile articlesList={articlesList} />}  />
   </Routes>
 }
   </LoginContext.Provider>

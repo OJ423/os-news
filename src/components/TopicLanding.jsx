@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { fetchFilteredArticles } from "./utils"
+import { fetchArticles } from "./utils"
 import ArticleListItem from "./ArticleListItem"
 import SortSection from "./SortSection"
 import { useParams } from "react-router-dom"
@@ -11,7 +11,7 @@ export default function TopicLanding({sortByQuery, searchParams, setSearchParams
   const [err, setErr] = useState(null)
 
   useEffect(() => {
-    fetchFilteredArticles({"topic": topic}, {"sort_by":sortByQuery})
+    fetchArticles(sortByQuery, orderQuery, topic)
     .then((responseArticles) => {
       setFilteredArticles(responseArticles)
       setIsLoading(false)
@@ -21,14 +21,14 @@ export default function TopicLanding({sortByQuery, searchParams, setSearchParams
       setErr(err.response.data.msg)
       setIsLoading(false)
     })
-  }, [sortByQuery, orderQuery])
+  }, [sortByQuery, orderQuery, topic])
 
   return (<>
     <h1>Articles talking {topic}</h1>
     {isLoading ? <p>Data is loading</p> :
     err ? <p className="error-message">{err}</p> :
     <>
-    <SortSection topic={topic} setSearchParams={setSearchParams} searchParams={searchParams} />
+    <SortSection topic={topic} setSearchParams={setSearchParams} searchParams={searchParams} sortByQuery={sortByQuery} />
     {filteredArticles.map((article) => (
       <ArticleListItem key={article.article_id} article={article}/>
     ))}
