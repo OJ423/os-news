@@ -6,19 +6,49 @@ const instance = axios.create({
 
 // Articles
 
-export function fetchArticles(filter = null) {
-  let filterQuery = null
-  if(filter) {
-    filterQuery = `?${Object.keys(filter)}=${Object.values(filter)}`
+// if (topic.topic !== undefined && sort.sort_by !== null ) {
+//   Query = `?${Object.keys(topic)}=${Object.values(topic)}&${Object.keys(sort)}=${Object.values(sort)}`
+// }
+// else if(sort.sort_by !== null && topic.topic === undefined) {
+//   Query = `?${Object.keys(sort)}=${Object.values(sort)}`
+// }
+// else if (sort.sort_by === null && topic.topic !== undefined) {
+//   Query = `?${Object.keys(topic)}=${Object.values(topic)}`
+// }
+
+export function fetchArticles(sort = null) {
+  let Query = null
+  if (sort.sort_by !== null ) {
+    Query = `?${Object.keys(sort)}=${Object.values(sort)}`
   }
+
    return instance
-  .get(`articles${filterQuery ? filterQuery : "" }`)
+  .get(`articles${Query ? Query : "" }`)
   .then((response) => {
     return response.data.articles
   })
   .catch((err) => {
     console.log(err)
     return err
+  })
+}
+
+export function fetchFilteredArticles(topic = null, sort = null) {
+  let Query = null
+  if (topic.topic !== undefined && sort.sort_by !== null ) {
+    Query = `?${Object.keys(topic)}=${Object.values(topic)}&${Object.keys(sort)}=${Object.values(sort)}`
+  }
+  else if(sort.sort_by !== null && topic.topic === undefined) {
+    Query = `?${Object.keys(sort)}=${Object.values(sort)}`
+  }
+  else if (sort.sort_by === null && topic.topic !== undefined) {
+    Query = `?${Object.keys(topic)}=${Object.values(topic)}`
+  }
+
+  return instance
+  .get(`articles${Query ? Query : "" }`)
+  .then((response) => {
+    return response.data.articles
   })
 }
 
@@ -33,8 +63,6 @@ export function fetchArticleById(id) {
     return err
   })
 }
-
-
 
 export function patchArticleVote(article_id, vote) {
   return instance

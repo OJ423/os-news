@@ -1,4 +1,4 @@
-import {Routes, Route} from 'react-router-dom'
+import {Routes, Route, useSearchParams, useParams} from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import ArticlesList from './ArticlesList'
 import Home from './Home'
@@ -11,14 +11,21 @@ import LoginContext from './context/LoginContext'
 import TopicLanding from './TopicLanding'
 
 export default function Manager() {
-  const [articlesList, setArticlesList] = useState([])
+  //User Login Context State
   const [userLogin, setUserLogin] = useState([]);
+  //API Request States
+  const [articlesList, setArticlesList] = useState([])
   const [topics, setTopics] = useState([])
+  //Errors and Message States
   const [isLoading, setIsLoading] = useState(true)
   const [err, setErr] = useState(null)
+  //Sort & Order
+  const [searchParams, setSearchParams] = useSearchParams("")
+  const sortByQuery = searchParams.get("sort_by")
+
 
   useEffect(() => {
-    fetchArticles()
+    fetchArticles({"sort_by": sortByQuery})
     .then((responseArticles) => {
       setArticlesList(responseArticles)
       setIsLoading(false)
@@ -30,7 +37,7 @@ export default function Manager() {
     .catch((err) => {
       setErr("Something went wrong fetching the data. Please refresh and try again.")
     })
-  },[])
+  },[sortByQuery])
 
   return (<>
   {err ? <p>{err}</p> :
@@ -39,11 +46,11 @@ export default function Manager() {
   <Navigation />
   <Routes>
     <Route path='/' element={<Home />}/>
-    <Route path='/articles' element={<ArticlesList articlesList={articlesList} isLoading={isLoading}/>} />
+    <Route path='/articles' element={<ArticlesList articlesList={articlesList} isLoading={isLoading} />} />
     <Route path='/articles/:article_id' element={<ReadArticle />}/>
     <Route path='/login' element={<Login />}  />
-    <Route path='/topics' element={<TopicsList topics={topics}/>} />
-    <Route path='/:topic/articles' element={<TopicLanding />} />
+    <Route path='/topics' element={<TopicsList topics={topics} />} />
+    <Route path='/:topic/articles' element={<TopicLanding sortByQuery={sortByQuery} />} />
   </Routes>
   </LoginContext.Provider>
   </>

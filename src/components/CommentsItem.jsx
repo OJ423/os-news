@@ -13,7 +13,7 @@ export default function CommentsItem({comment, selectedArticle}) {
       setIsDeleted("Comment deleted")
     })
     .catch((err) => {
-      setErr("Something went wrong. Please try again.")
+      setErr("Something went wrong. Please refresh the page and try again.")
       setIsDeleted(null)
     })
   }

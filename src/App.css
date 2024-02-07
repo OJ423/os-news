@@ -162,6 +162,16 @@
   text-align: center;
 }
 
+/* Sort  */
+
+.sort-container button, .sort-container button h3 {
+  font-size: 0.7rem;
+  margin: 5px;
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+
 
 
 /* Errors and Alerts */
