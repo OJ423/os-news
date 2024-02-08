@@ -35,7 +35,9 @@ export default function CommentsList({selectedArticle}) {
     <section key="comments-list" className="comments-list">
     <h2>Comments</h2>
       {userLogin.length ? <> 
-      {newComment ? <AddComment setNewComment={setNewComment} selectedArticle={selectedArticle} setComments={setComments}/> : <button onClick={handleAddComment}>Add Comment</button> } </>: null }
+      {newComment 
+        ? <AddComment setNewComment={setNewComment} selectedArticle={selectedArticle} setComments={setComments}/> 
+        : <button onClick={handleAddComment}>Add Comment</button> } </>: <p>Login if you'd like to leave a comment</p> }
       {comments.map((comment) => (
         <CommentsItem key={comment.comment_id} comment={comment} selectedArticle={selectedArticle}/>
       ))}
