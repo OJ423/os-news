@@ -2,7 +2,6 @@ import { useContext, useState } from "react"
 import AddVote from "./AddVote"
 import LoginContext from "./context/LoginContext"
 import { deleteArticle } from "./utils"
-import { useNavigate } from "react-router-dom"
 
 export default function ArticleDetail({selectedArticle, setArticleDeleted}) {
   const {userLogin, setUserLogin} = useContext(LoginContext)

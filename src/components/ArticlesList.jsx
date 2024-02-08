@@ -1,5 +1,4 @@
 import ArticleListItem from "./ArticleListItem";
-import SortList from "./SortList";
 import SortSection from "./SortSection";
 
 export default function ArticlesList({articlesList, isLoading, err, setSearchParams, searchParams, sortByQuery}) {

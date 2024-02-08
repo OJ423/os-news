@@ -6,14 +6,15 @@ const instance = axios.create({
 
 // Articles
 
-export function fetchArticles(sort, order, topic) {
-  console.log(order)
+export function fetchArticles(sort, order, topic, limit, p) {
    return instance
   .get(`articles`, {
     params: {
       "topic": topic,
       "sort_by": sort,
-      "order": order
+      "order": order,
+      "limit": limit,
+      "p": p
     }
   })
   .then((response) => {
@@ -97,6 +98,14 @@ export function patchCommentVote(comment_id, vote) {
 export function fetchTopics() {
   return instance
   .get('topics')
+  .then((response) => {
+    return response.data.topics
+  })
+}
+
+export function postNewTopic(body) {
+  return instance
+  .post('topics', body)
   .then((response) => {
     return response.data.topics
   })

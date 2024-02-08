@@ -1,9 +1,15 @@
+import { useContext, useState } from "react"
 import { Link } from "react-router-dom"
+import LoginContext from "./context/LoginContext"
+import TopicsNew from "./TopicsNew"
 
-export default function TopicsList({topics}) {
+export default function TopicsList({topics, setNewTopic}) {
+  const {userLogin, setUserLogin} = useContext(LoginContext)
+  const [selectNewTopic, setSelectNewTopic] = useState(false) 
 
+  function handleNewTopic(){setSelectNewTopic(true)}
+  console.log(selectNewTopic)
   return (
-    <>
     <section className="topics-container">
       <h2>Article Topics</h2>
       <p>Choose a topic of interest to read related articles.</p>
@@ -17,7 +23,11 @@ export default function TopicsList({topics}) {
           </Link>
         ))}  
       </div>
-    </section>
-    
-    </>)
+      <section className="new-topic-container">
+      {userLogin.length ?
+      selectNewTopic ? <TopicsNew setNewTopic={setNewTopic} topics={topics} setSelectNewTopic={setSelectNewTopic} /> : 
+      <button onClick={handleNewTopic}>Add a new topic</button> : null
+      }
+      </section>
+    </section>  )
 }
