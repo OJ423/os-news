@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import SortList from "./SortList";
 
 export default function SortSection({topic, setSearchParams, searchParams, sortByQuery}) {
-  let sortCriteria = ["title", "author", "topic", "created_at", "votes"]
+  let sortCriteria = ["title", "author", "topic", "created_at", "votes", "comment_count"]
   let orderArr = ["DESC", "ASC"]
-  if(topic !== undefined) sortCriteria.splice(-3, 1)
+  if(topic !== undefined) sortCriteria.splice(-4, 1)
 
   const setOrderQuery = (direction) => {
       const newParams = new URLSearchParams(searchParams)

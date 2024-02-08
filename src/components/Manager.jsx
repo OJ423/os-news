@@ -27,7 +27,7 @@ export default function Manager() {
   const orderQuery = searchParams.get("order")
 
   useEffect(() => {
-    fetchArticles(sortByQuery, orderQuery)
+    fetchArticles(sortByQuery, orderQuery, undefined)
     .then((responseArticles) => {
       if(responseArticles === 400) setErr("Please search something better")
       setArticlesList(responseArticles)
