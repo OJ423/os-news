@@ -40,7 +40,7 @@ export default function AddVote({comment, setVoteCount}) {
   return (
     <>
     {err ? <p className="error-message">{err}</p> : 
-    hasVoted ? <button onClick={removeVote}>Remove Vote</button> :
+    hasVoted ? <button className="vote-button" onClick={removeVote}>Remove Vote</button> :
     <button className="vote-button" onClick={increaseVotes}>Add Vote</button>
     }
   </>

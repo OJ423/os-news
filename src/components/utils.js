@@ -39,6 +39,14 @@ export function patchArticleVote(article_id, vote) {
   })
 }
 
+export function deleteArticle(article_id) {
+  return instance
+  .delete(`articles/${article_id}`)
+  .then((response) => {
+    return "Comment deleted"
+  })
+}
+
 // Users
 
 export function fetchUsers() {

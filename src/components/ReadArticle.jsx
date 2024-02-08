@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
-import {useParams} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 import { fetchArticleById } from './utils'
 import ArticleDetail from './ArticleDetail'
 import CommentsList from './CommentsList'
 
-export function ReadArticle() {
+export function ReadArticle( {isArticleDeleted, setArticleDeleted}) {
   const {article_id} = useParams()
   const [selectedArticle, setSelectedArticle] = useState()
   const [isLoading, setIsLoading] = useState(true)
   const [err, setErr] = useState(null)
+  const navigate = useNavigate()
   
   useEffect(() => {
     fetchArticleById(article_id)
@@ -27,9 +28,17 @@ export function ReadArticle() {
   {isLoading ? <p>Loading article.</p> :
   err ? <p className='error-message'>{err}</p> :
   <>
-  <ArticleDetail selectedArticle={selectedArticle} setSelectedArticle={setSelectedArticle} />
+  {isArticleDeleted ? 
+        <>
+        <p>{isArticleDeleted}</p> 
+        <button onClick={(()=> {navigate('/articles')})}>To Articles</button>
+        </>
+      :  
+      <>
+  <ArticleDetail selectedArticle={selectedArticle} setSelectedArticle={setSelectedArticle} isArticleDeleted={isArticleDeleted} setArticleDeleted={setArticleDeleted} />
   <CommentsList selectedArticle={selectedArticle}/>
   </>
+  }</>
   }
   </>
 )

@@ -18,6 +18,7 @@ export default function Manager() {
   //API Request States
   const [articlesList, setArticlesList] = useState([])
   const [topics, setTopics] = useState([])
+  const [isArticleDeleted, setArticleDeleted] = useState(null)
   //Errors and Message States
   const [isLoading, setIsLoading] = useState(true)
   const [err, setErr] = useState(null)
@@ -44,7 +45,7 @@ export default function Manager() {
     .catch((err) => {
       setErr("Something went wrong fetching the data. Please refresh and try again.")
     })
-  },[sortByQuery, orderQuery])
+  },[sortByQuery, orderQuery, isArticleDeleted])
 
   return (<>
   <>
@@ -55,7 +56,7 @@ export default function Manager() {
     <Route path='*' element={<ErrorPage/>} />
     <Route path='/' element={<Home topics={topics} />}/>
     <Route path='/articles' element={<ArticlesList articlesList={articlesList} sortByQuery={sortByQuery} isLoading={isLoading} searchParams={searchParams} setSearchParams={setSearchParams}/>} />
-    <Route path='/articles/:article_id' element={<ReadArticle />}/>
+    <Route path='/articles/:article_id' element={<ReadArticle isArticleDeleted={isArticleDeleted} setArticleDeleted={setArticleDeleted} />}/>
     <Route path='/topics' element={<TopicsList topics={topics} />} />
     <Route path='/:topic/articles' element={<TopicLanding sortByQuery={sortByQuery} orderQuery={orderQuery} setSearchParams={setSearchParams} searchParams={searchParams} />} />
     <Route path='/login' element={<Login />}  />

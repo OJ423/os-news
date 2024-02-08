@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import LoginContext from "./context/LoginContext";
 import { fetchUsers } from "./utils";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const {userLogin, setUserLogin} = useContext(LoginContext)
@@ -8,6 +9,7 @@ export default function Login() {
   const [users, setUsers] = useState([]);
   const [validUser, setValidUser] = useState(true)
   const [err, setErr] = useState(true)
+  const navigate = useNavigate()
 
   useEffect(() => {
     fetchUsers()
@@ -32,6 +34,7 @@ export default function Login() {
         setValidUser(true)
         setUsernameInput([])
         setUserLogin(filteredUsers)
+        navigate('/profile')
       }
       else {
         setValidUser(false)      

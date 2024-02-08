@@ -40,8 +40,8 @@ export default function AddVote({selectedArticle, setVoteCount}) {
   return (
     <>
     {err ? <p className="error-message">{err}</p> : 
-    hasVoted ? <button onClick={removeVote}>Remove Vote</button> :
-    <button onClick={increaseVotes}>Add Vote</button>
+    hasVoted ? <button className="vote-button" onClick={removeVote}>Remove Vote</button> :
+    <button className="vote-button" onClick={increaseVotes}>Add Vote</button>
     }
   </>
   )

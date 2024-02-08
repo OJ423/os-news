@@ -13,6 +13,8 @@ export default function Profile({articlesList}){
   }
 
   return( <>
+    {userLogin.length ?
+    <>
     <h1>Profile for {userLogin[0].username}</h1>
     <section className="profile-container">
       <img src={userLogin[0].avatar_url} alt={`Avatar for ${userLogin[0].username}`} />
@@ -28,6 +30,13 @@ export default function Profile({articlesList}){
         <ArticleListItem key={article.article_id} article={article} />
         : null
       ))}
+      </>
+      : 
+      <>
+      <p>Woah! How did you get here? This page is for logged in users only</p>
+      <button onClick={(() => {navigate('/login')})}>Login Here</button>
+      </>
+      }
     </>
   )
 

@@ -1,10 +1,28 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import AddVote from "./AddVote"
+import LoginContext from "./context/LoginContext"
+import { deleteArticle } from "./utils"
+import { useNavigate } from "react-router-dom"
 
-export default function ArticleDetail({selectedArticle, setSelectedArticle}) {
+export default function ArticleDetail({selectedArticle, setArticleDeleted}) {
+  const {userLogin, setUserLogin} = useContext(LoginContext)
+  const [err, setErr] = useState(null)
   const [voteCount, setVoteCount] = useState(selectedArticle.votes)
+
+  function handleDeleteArticle() {
+    deleteArticle(selectedArticle.article_id)
+    .then((response) => {
+      setArticleDeleted("Article deleted")
+    })
+    .catch((err) => {
+      setErr("Something went wrong. Please refresh the page and try again.")
+      setArticleDeleted(null)
+    })
+  }
+
   return (
     <article className='read-article'>
+      {err ? <p className="error-message">{err}</p> : null}
       <h1>{selectedArticle.title}</h1>
       <div>
         <figure className='meta'>{selectedArticle.created_at.slice(0,10)}</figure>
@@ -13,8 +31,14 @@ export default function ArticleDetail({selectedArticle, setSelectedArticle}) {
         <p>{selectedArticle.body}</p>
       <div>
       <figure className='meta'>{voteCount} votes</figure>
+
       <AddVote selectedArticle={selectedArticle} setVoteCount={setVoteCount}/>
       </div>
       </div>
+      {userLogin.length > 0 ? 
+          userLogin[0].username === selectedArticle.author ? 
+          <button className='delete-button' onClick={handleDeleteArticle}>Delete Article</button> 
+          : null
+          : null }
     </article>)
 }
