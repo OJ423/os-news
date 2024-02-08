@@ -19,16 +19,16 @@ export default function Navigation(){
           OS NEWS
         </div>
         <div className="menu-icon" onClick={handleShowNavbar}>
-          <IoMenu />
+          {!showNav ? <IoMenu /> : <IoClose/>}
         </div>
-        <div className={`nav-elements  ${showNav && "active"}`}>
+        <div className={`nav-elements ${showNav && "active"}`}>
           <ul>
-            <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/articles">Articles</NavLink></li>
-            <li><NavLink to="/topics">Topics</NavLink></li>
+            <li><NavLink onClick={handleShowNavbar} to="/">Home</NavLink></li>
+            <li><NavLink onClick={handleShowNavbar} to="/articles">Articles</NavLink></li>
+            <li><NavLink onClick={handleShowNavbar} to="/topics">Topics</NavLink></li>
           {userLogin.length ?
-            <li><NavLink to="/profile">Profile</NavLink></li> :
-            <li><NavLink to="/login">Login</NavLink></li>
+            <li><NavLink onClick={handleShowNavbar} to="/profile">Profile</NavLink></li> :
+            <li><NavLink onClick={handleShowNavbar} to="/login">Login</NavLink></li>
           }
           </ul>
         </div>

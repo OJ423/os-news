@@ -299,7 +299,7 @@ h1 {
     max-width: 500px;
   }
 
-
+}
 @media (prefers-color-scheme: light) {
   .article-list-item a h2 {
     color: rgb(16, 37, 66)
