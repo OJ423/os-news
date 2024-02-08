@@ -11,6 +11,7 @@ import { ReadArticle } from './ReadArticle'
 import { fetchArticles, fetchTopics } from './utils'
 import LoginContext from './context/LoginContext'
 import TopicLanding from './TopicLanding'
+import Footer from './Footer'
 
 export default function Manager() {
   //User Login Context State
@@ -53,17 +54,20 @@ export default function Manager() {
   <LoginContext.Provider value={{ userLogin, setUserLogin }}>
   <Navigation />
   {err ? <p>{err}</p> :
-  <Routes>
-    <Route path='*' element={<ErrorPage/>} />
-    <Route path='/' element={<Home />}/>
-    <Route path='/articles' element={<ArticlesList articlesList={articlesList} sortByQuery={sortByQuery} isLoading={isLoading} searchParams={searchParams} setSearchParams={setSearchParams}/>} />
-    <Route path='/articles/:article_id' element={<ReadArticle isArticleDeleted={isArticleDeleted} setArticleDeleted={setArticleDeleted} />}/>
-    <Route path='/topics' element={<TopicsList topics={topics} setNewTopic={setNewTopic} />} />
-    <Route path='/:topic/articles' element={<TopicLanding sortByQuery={sortByQuery} orderQuery={orderQuery} setSearchParams={setSearchParams} searchParams={searchParams} />} />
-    <Route path='/login' element={<Login />}  />
-    <Route path='/profile' element={<Profile articlesList={articlesList} />}  />
-  </Routes>
-}
+    <>
+    <Routes>
+      <Route path='*' element={<ErrorPage/>} />
+      <Route path='/' element={<Home />}/>
+      <Route path='/articles' element={<ArticlesList articlesList={articlesList} sortByQuery={sortByQuery} isLoading={isLoading} searchParams={searchParams} setSearchParams={setSearchParams}/>} />
+      <Route path='/articles/:article_id' element={<ReadArticle isArticleDeleted={isArticleDeleted} setArticleDeleted={setArticleDeleted} />}/>
+      <Route path='/topics' element={<TopicsList topics={topics} setNewTopic={setNewTopic} />} />
+      <Route path='/:topic/articles' element={<TopicLanding sortByQuery={sortByQuery} orderQuery={orderQuery} setSearchParams={setSearchParams} searchParams={searchParams} />} />
+      <Route path='/login' element={<Login />}  />
+      <Route path='/profile' element={<Profile articlesList={articlesList} />}  />
+    </Routes>
+    <Footer/>
+    </>
+  }
   </LoginContext.Provider>
   </>
   </>)

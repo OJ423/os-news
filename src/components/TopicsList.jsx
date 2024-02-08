@@ -8,7 +8,7 @@ export default function TopicsList({topics, setNewTopic}) {
   const [selectNewTopic, setSelectNewTopic] = useState(false) 
 
   function handleNewTopic(){setSelectNewTopic(true)}
-  console.log(selectNewTopic)
+
   return (
     <section className="topics-container">
       <h2>Article Topics</h2>

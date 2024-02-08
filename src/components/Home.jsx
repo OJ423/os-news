@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { fetchArticles } from "./utils"
 import ArticleListItem from './ArticleListItem'
+import { useNavigate } from "react-router-dom"
 
 
 
@@ -8,9 +9,10 @@ import ArticleListItem from './ArticleListItem'
 export default function Home() {
   const [homeArticles, setHomeArticles] = useState([])
   const [err, setErr] = useState(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
-    fetchArticles("created_at", "DESC", null, 3, null)
+    fetchArticles("created_at", "DESC", null, 4, null)
     .then((responseArticles) => {
       setHomeArticles(responseArticles)
     })
@@ -21,12 +23,16 @@ export default function Home() {
 
   return(
     <section className="home">
-      <h1>OS News</h1>
-      <p>News when you need it</p>
+      <article>
+        <div className="hero-title">
+          <h1>OS News</h1>
+          <p>News when you need it</p>
+        </div>
+      </article>
       <h2>Latest Articles</h2>
-      {homeArticles.map((article) => (
-        <ArticleListItem key={article.article_id} article={article} />
-      ))}
+        {homeArticles.map((article) => (
+          <ArticleListItem key={article.article_id} article={article} />
+        ))}
       <button>View all</button>
     </section>)
 }

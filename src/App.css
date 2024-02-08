@@ -3,12 +3,28 @@
   box-sizing: border-box;
   margin: 0 auto;
   padding: 1rem;
-  text-align: center;
 }
 
 h1 {
   font-size: 2.2em;
   line-height: 1.1;
+}
+
+/* Home */
+.hero-title {
+  display: grid;
+}
+
+.hero-title p {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 5px;
+}
+
+.hero-title h1 {
+  margin-bottom: 10px;
+  display: inline-block;
+  width: auto;
 }
 
 
@@ -161,11 +177,12 @@ h1 {
 
 .login-container input {
   width: 100%;
-  padding: 5px;
+  padding: 15px;
   box-sizing: border-box;
   margin: 10px 0 20px 0;
   border-radius: 5px;
-  text-align: center;
+  text-align: left;
+  font-size: 1.2rem;
 }
 
 /* Profile */
@@ -256,6 +273,19 @@ h1 {
   max-width: 100%;
 }
 
+/* Footer */
+
+footer {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgb(31, 221, 104);
+  color: #242424;
+  height: 100px;
+  padding: 30px 0 152px 0;
+  text-align: center;
+  border-radius: 15px 15px 0 0;
+  margin-top: 50px;
+}
 
 
 /* desktop & tablet */
@@ -263,7 +293,7 @@ h1 {
 @media only screen and (min-width: 768px) {
 
   h1 {
-    font-size: 3.2em;
+    font-size: 2.8em;
     line-height: 1.1;
   }
 
@@ -274,6 +304,15 @@ h1 {
     align-items: center;
     gap: 50px;
     text-align: left;
+  }
+
+  .article-list-item img {
+    transition: .3s ease;
+  }
+
+  .article-list-item img:hover {
+    transition: .6s ease;
+    border-radius:20px;
   }
 
   .read-article, .comments-list {
@@ -298,8 +337,8 @@ h1 {
   .login-container, .four-oh-four-container {
     max-width: 500px;
   }
-
 }
+
 @media (prefers-color-scheme: light) {
   .article-list-item a h2 {
     color: rgb(16, 37, 66)
@@ -307,5 +346,9 @@ h1 {
   .article-list-item a h2:hover {
     color: #747bff;
   }
-
+  footer {
+    background: rgb(16, 37, 66);
+    color: white;
+  }
 }
+

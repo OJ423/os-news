@@ -15,7 +15,7 @@
 
 a {
   font-weight: 500;
-  color: rgb(220, 0, 115);
+  color: rgba(215, 220, 0, 0.54);
   text-decoration: inherit;
   transition: 0.5s;
 }
@@ -27,7 +27,7 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  place-items: start;
   min-width: 320px;
   min-height: 100vh;
 }

@@ -96,9 +96,9 @@
     position: absolute;
     right: 0;
     top: 65px;
-    background-color: #fef7e5;
+    background-color: #242424;
     width: 0px;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 80px);
     transition: all 0.3s ease-in;
     overflow: hidden;
   }
@@ -124,5 +124,11 @@
   .nav-elements ul a {
     font-size: 1rem;
   }
-
+  @media (prefers-color-scheme: light) {
+    .nav-elements {
+      background-color: #fef7e5
+    }
+  }
 }
+
+
