@@ -6,7 +6,10 @@
   text-align: center;
 }
 
-
+h1 {
+  font-size: 2.2em;
+  line-height: 1.1;
+}
 
 /* Navigation */
 
@@ -119,6 +122,10 @@
   background-color: lightpink;
   color: #242424;
   transition: 0.5s;
+}
+
+.vote-button {
+  margin-top: 20px;
 }
 
 /* Topics */
@@ -256,6 +263,10 @@
 
 @media only screen and (min-width: 768px) {
 
+  h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+  }
 
   .article-list-item {
     width: 700px;

@@ -1,10 +1,12 @@
 import {useContext, useState} from 'react'
 import LoginContext from './context/LoginContext'
 import {deleteComment} from './utils'
+import AddVoteComment from './AddVoteComment'
 
 export default function CommentsItem({comment, selectedArticle}) {
   const {userLogin} = useContext(LoginContext)
   const [isDeleted, setIsDeleted] = useState(null)
+  const [voteCount, setVoteCount] = useState(comment.votes)
   const [err, setErr] = useState(null)
 
   function handleDeleteComment() {
@@ -35,6 +37,7 @@ export default function CommentsItem({comment, selectedArticle}) {
           <button className='delete-button' onClick={handleDeleteComment}>Delete Comment</button> 
           : null
           : null }
+        <AddVoteComment comment={comment} setVoteCount={setVoteCount}/>
       </> 
       } 
       </>

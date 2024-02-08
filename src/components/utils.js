@@ -74,6 +74,16 @@ export function deleteComment(comment_id) {
     return "Comment deleted"
   })
 }
+
+export function patchCommentVote(comment_id, vote) {
+  return instance
+  .patch(`comments/${comment_id}`,
+  {"inc_votes": vote})
+  .then((response) => {
+    return response.data.article
+  })
+}
+
 // Topics
 
 export function fetchTopics() {
