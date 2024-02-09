@@ -4,7 +4,7 @@ import SortSection from "./SortSection";
 
 export default function ArticlesList({articlesList, isLoading, err, setSearchParams, searchParams, sortByQuery, pagMax, setPagMax, pQuery}) {  
   return (
-  <>
+    <>
   <h1>Articles</h1>
   {isLoading ? 
     <p>Articles loading</p> :

@@ -3,22 +3,25 @@ import AddVote from "./AddVote"
 import LoginContext from "./context/LoginContext"
 import { deleteArticle } from "./utils"
 import RenderToggleContext from "./context/RenderToggleContext"
+import { useNavigate } from "react-router-dom"
 
 export default function ArticleDetail({selectedArticle, setArticleDeleted}) {
   const {userLogin, setUserLogin} = useContext(LoginContext)
   const {render, setRender} = useContext(RenderToggleContext)
   const [err, setErr] = useState(null)
   const [voteCount, setVoteCount] = useState(selectedArticle.votes)
+  const navigate = useNavigate()
 
   function handleDeleteArticle() {
     deleteArticle(selectedArticle.article_id)
     .then((response) => {
-      setArticleDeleted("Article deleted")
+      setRender(!render)
+      navigate('/articles')
     })
     .catch((err) => {
       setErr("Something went wrong. Please refresh the page and try again.")
       setArticleDeleted(null)
-      setRender(!render)
+
     })
   }
 

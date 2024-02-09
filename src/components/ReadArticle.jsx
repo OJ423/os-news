@@ -4,7 +4,7 @@ import { fetchArticleById } from './utils'
 import ArticleDetail from './ArticleDetail'
 import CommentsList from './CommentsList'
 
-export function ReadArticle( {isArticleDeleted, setArticleDeleted}) {
+export function ReadArticle() {
   const {article_id} = useParams()
   const [selectedArticle, setSelectedArticle] = useState()
   const [isLoading, setIsLoading] = useState(true)
@@ -28,17 +28,9 @@ export function ReadArticle( {isArticleDeleted, setArticleDeleted}) {
   {isLoading ? <p>Loading article.</p> :
   err ? <p className='error-message'>{err}</p> :
   <>
-  {isArticleDeleted ? 
-        <>
-        <p>{isArticleDeleted}</p> 
-        <button onClick={(()=> {navigate('/articles')})}>To Articles</button>
-        </>
-      :  
-      <>
-  <ArticleDetail selectedArticle={selectedArticle} setSelectedArticle={setSelectedArticle} isArticleDeleted={isArticleDeleted} setArticleDeleted={setArticleDeleted} />
+  <ArticleDetail selectedArticle={selectedArticle} setSelectedArticle={setSelectedArticle} />
   <CommentsList selectedArticle={selectedArticle}/>
   </>
-  }</>
   }
   </>
 )

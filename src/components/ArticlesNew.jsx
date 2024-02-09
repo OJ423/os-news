@@ -17,7 +17,6 @@ export default function({topics}) {
   const handleTopic = (event) => { setNewTopic(event.target.value)}
   const handleImg = (event) => { setImg(event.target.value)}
   const handleBody = (event) => { setBody(event.target.value)}
-  console.log(newTitle, newTopic, newImg, newBody)
   const handleNewArticleSubmission = (event) => {
     event.preventDefault()
     if(newTopic === "Please Choose") setErr("Please choose a topic")
@@ -34,7 +33,6 @@ export default function({topics}) {
       setImg("")
     }
   }
-  console.log(newArticle)
   return (<>
   {userLogin.length
     ?
