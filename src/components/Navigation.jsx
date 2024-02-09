@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { NavLink } from "react-router-dom"
 import LoginContext from "./context/LoginContext"
-import { IoClose, IoMenu } from "react-icons/io5";
+import { IoClose, IoMenu, IoNewspaperOutline, IoHomeOutline, IoFolderOpenOutline, IoPersonOutline } from "react-icons/io5";
 import '../Navbar.css'
 
 
@@ -23,12 +23,12 @@ export default function Navigation(){
         </div>
         <div className={`nav-elements ${showNav && "active"}`}>
           <ul>
-            <li><NavLink onClick={handleShowNavbar} to="/">Home</NavLink></li>
-            <li><NavLink onClick={handleShowNavbar} to="/articles">Articles</NavLink></li>
-            <li><NavLink onClick={handleShowNavbar} to="/topics">Topics</NavLink></li>
+            <li><NavLink onClick={handleShowNavbar} to="/"><IoHomeOutline /> Home</NavLink></li>
+            <li><NavLink onClick={handleShowNavbar} to="/articles"><IoNewspaperOutline /> Articles</NavLink></li>
+            <li><NavLink onClick={handleShowNavbar} to="/topics"><IoFolderOpenOutline/> Topics</NavLink></li>
           {userLogin.length ?
-            <li><NavLink onClick={handleShowNavbar} to="/profile">Profile</NavLink></li> :
-            <li><NavLink onClick={handleShowNavbar} to="/login">Login</NavLink></li>
+            <li><NavLink onClick={handleShowNavbar} to="/profile"><IoPersonOutline/> Profile</NavLink></li> :
+            <li><NavLink onClick={handleShowNavbar} to="/login"><IoPersonOutline/> Login</NavLink></li>
           }
           </ul>
         </div>

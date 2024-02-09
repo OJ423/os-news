@@ -19,6 +19,7 @@ export default function CommentsItem({comment, selectedArticle}) {
       setIsDeleted(null)
     })
   }
+  console.log(voteCount)
   return (
   
     <section className="comment-card">
@@ -29,7 +30,7 @@ export default function CommentsItem({comment, selectedArticle}) {
         <p>{comment.body}</p>
         <div>
           <figure className="meta">{comment.author}</figure>
-          <figure className="meta">{comment.votes} votes</figure>
+          <figure className="meta">{voteCount} votes</figure>
           <time className="meta">{comment.created_at.slice(0,10)}</time>
         </div>
         {userLogin.length > 0 ? 

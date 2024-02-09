@@ -60,12 +60,14 @@ button:focus-visible {
   }
 
   a {
-    color: rgb(16, 37, 66)
+    color: rgb(39, 20, 97)
   }
 
   a:hover {
     color: #747bff;
   }
+
+
   button {
     background-color: #dbd8d8;
   }

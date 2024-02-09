@@ -12,6 +12,7 @@ import { fetchArticles, fetchTopics } from './utils'
 import LoginContext from './context/LoginContext'
 import TopicLanding from './TopicLanding'
 import Footer from './Footer'
+import ArticlesNew from './ArticlesNew'
 
 export default function Manager() {
   //User Login Context State
@@ -26,11 +27,13 @@ export default function Manager() {
   const [err, setErr] = useState(null)
   //Sort & Order
   const [searchParams, setSearchParams] = useSearchParams("")
+  const [pagMax, setPagMax] = useState(null)
   const sortByQuery = searchParams.get("sort_by")
   const orderQuery = searchParams.get("order")
+  const pQuery = searchParams.get("p")
 
   useEffect(() => {
-    fetchArticles(sortByQuery, orderQuery, undefined)
+    fetchArticles(sortByQuery, orderQuery, null, 9, pQuery)
     .then((responseArticles) => {
       if(responseArticles === 400) setErr("Please search something better")
       setArticlesList(responseArticles)
@@ -47,7 +50,7 @@ export default function Manager() {
     .catch((err) => {
       setErr("Something went wrong fetching the data. Please refresh and try again.")
     })
-  },[sortByQuery, orderQuery, isArticleDeleted, newTopic])
+  },[sortByQuery, orderQuery, isArticleDeleted, newTopic, pQuery])
 
   return (<>
   <>
@@ -57,9 +60,10 @@ export default function Manager() {
     <>
     <Routes>
       <Route path='*' element={<ErrorPage/>} />
-      <Route path='/' element={<Home />}/>
-      <Route path='/articles' element={<ArticlesList articlesList={articlesList} sortByQuery={sortByQuery} isLoading={isLoading} searchParams={searchParams} setSearchParams={setSearchParams}/>} />
+      <Route path='/' element={<Home topics={topics} />}/>
+      <Route path='/articles' element={<ArticlesList articlesList={articlesList} sortByQuery={sortByQuery} isLoading={isLoading} searchParams={searchParams} setSearchParams={setSearchParams} setPagMax={setPagMax} pagMax={pagMax} pQuery={pQuery} />} />
       <Route path='/articles/:article_id' element={<ReadArticle isArticleDeleted={isArticleDeleted} setArticleDeleted={setArticleDeleted} />}/>
+      <Route path='/articles/new' element={ <ArticlesNew topics={topics} /> } />
       <Route path='/topics' element={<TopicsList topics={topics} setNewTopic={setNewTopic} />} />
       <Route path='/:topic/articles' element={<TopicLanding sortByQuery={sortByQuery} orderQuery={orderQuery} setSearchParams={setSearchParams} searchParams={searchParams} />} />
       <Route path='/login' element={<Login />}  />

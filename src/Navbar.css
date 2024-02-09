@@ -68,6 +68,12 @@
   background-color: #574c4c;
 }
 
+@media (prefers-color-scheme: light) {
+  .nav-elements ul a.active {
+    color: rgb(207, 35, 133);
+  }
+}
+
 
 @media only screen and (max-width: 768px) {
 
@@ -127,6 +133,9 @@
   @media (prefers-color-scheme: light) {
     .nav-elements {
       background-color: #fef7e5
+    }
+    .nav-elements ul a.active {
+      color: rgb(207, 35, 133);
     }
   }
 }

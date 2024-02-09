@@ -11,7 +11,7 @@ export default function TopicsList({topics, setNewTopic}) {
 
   return (
     <section className="topics-container">
-      <h2>Article Topics</h2>
+      <h1>Article Topics</h1>
       <p>Choose a topic of interest to read related articles.</p>
       <div className="topics-grid">
         {topics.map((topic) => ( 

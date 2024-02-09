@@ -27,6 +27,10 @@ h1 {
   width: auto;
 }
 
+.home-topics-container {
+  margin: 50px 0;
+}
+
 
 /* Articles List */
 
@@ -68,6 +72,34 @@ h1 {
   border-bottom: dashed 2px rgb(31, 221, 104);
 }
 
+/* Pagination */
+.pagination-container {
+  display: grid;
+  grid-template-areas: "previous-article pagination-info next-article";
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+.pagination-info {
+  grid-area: pagination-info;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.previous-article svg, .next-article svg {
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.previous-article svg:hover, .next-article svg:hover {
+  transition: 0.5s;
+  opacity: 0.5;
+}
+
+
+
 /* Read Article */
 
 .read-article {
@@ -83,6 +115,26 @@ h1 {
   margin: 20px auto;
   max-width: 100%;
 
+}
+
+/* New Article */
+
+.new-article-container {
+  width: 600px;
+  margin: auto;
+}
+
+.new-article-container img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.new-article-container input, .new-article-container select, .new-article-container textarea {
+  padding: 10px;
+  width: 100%;
+  margin: 10px 0 20px 0;
+  box-sizing: border-box;
+  border-radius: 5px;
 }
 
 /* Comment Section */
@@ -134,7 +186,7 @@ h1 {
 
 .topics-grid {
   display: grid;
-  grid-template-columns: 100%;
+  grid-template-columns: auto;
   gap: 20px;
   box-sizing: border-box;
   align-items: center;
@@ -145,6 +197,11 @@ h1 {
   border: inset 8px rgb(31, 221, 104);
   border-radius:  5px;
   transition: 0.5s;
+  box-sizing: border-box;
+}
+
+a .topic-card p {
+  color: white;
 }
 
 .topic-card h3 {
@@ -229,9 +286,8 @@ h1 {
 .sort-container {
   align-items: center;
   padding: 10px;
-  /* display: grid;
-  grid-template-columns: auto auto auto auto auto; */
-  margin: 30px;
+  margin: 30px auto;
+  display: table;
 }
 
 .sort-container button, .sort-container button, .sort-container h3 {
@@ -277,14 +333,23 @@ h1 {
 
 footer {
   width: 100%;
+  display: grid;
+  grid-template-areas: "logo" "footer-links" "footer-rights" "footer-rights" ;
   box-sizing: border-box;
-  background: rgb(31, 221, 104);
-  color: #242424;
-  height: 100px;
-  padding: 30px 0 152px 0;
-  text-align: center;
-  border-radius: 15px 15px 0 0;
+  padding: 30px 0 50px 0;
+  border-top: solid 5px rgb(31, 221, 104);
   margin-top: 50px;
+  border-bottom: solid 15px rgb(31, 221, 104);
+  text-align: center;
+}
+
+
+.footer-rights {
+  text-align: center;
+  grid-area: footer-rights;
+  margin-top: 40px;
+  font-size: 0.7rem;
+  opacity: 0.8;
 }
 
 
@@ -292,17 +357,26 @@ footer {
 
 @media only screen and (min-width: 768px) {
 
+  #root {
+    width: 1024px;
+  }
+
   h1 {
     font-size: 2.8em;
     line-height: 1.1;
   }
 
-  .article-list-item {
-    width: 700px;
+  .articles-container {
     display: grid;
-    grid-template-columns: 40% 60%;
-    align-items: center;
-    gap: 50px;
+    grid-template-columns: auto auto auto;
+    column-gap: 50px;
+  }
+
+  .article-list-item {
+    display: grid;
+    grid-template-columns: auto;
+    align-items: start;
+    gap: 20px;
     text-align: left;
   }
 
@@ -326,17 +400,49 @@ footer {
   }
 
   .topics-container {
-    max-width: 500px;
+    margin: auto;
   }
 
   .topics-grid {
-    grid-template-columns: 50% 50%;
+    grid-template-columns: auto auto auto auto;
     gap: 40px;
   }
 
   .login-container, .four-oh-four-container {
     max-width: 500px;
+    margin: auto;
   }
+
+  .profile-page-container {
+    max-width: 500px;
+    margin: auto;
+  }
+
+  .articles-two-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 20px;
+    align-items: start;
+  }
+
+  footer {
+    width: 100%;
+    display: grid;
+    grid-template-areas: "logo footer-links" "footer-rights footer-rights" ;
+    box-sizing: border-box;
+    padding: 30px 20% 75px 20%;
+    border-top: solid 5px rgb(31, 221, 104);
+    margin-top: 50px;
+    align-items: start;
+    text-align: left;
+  }
+
+  footer p {
+    margin-top: 0;
+    border-bottom: solid 1px rgb(31, 221, 104);
+  }
+
+
 }
 
 @media (prefers-color-scheme: light) {
@@ -346,9 +452,8 @@ footer {
   .article-list-item a h2:hover {
     color: #747bff;
   }
-  footer {
-    background: rgb(16, 37, 66);
-    color: white;
+  a .topic-card p {
+    color: #242424;
   }
 }
 

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoginContext from "./context/LoginContext";
 import ArticleListItem from "./ArticleListItem";
 
@@ -12,7 +12,8 @@ export default function Profile({articlesList}){
     navigate('/login')
   }
 
-  return( <>
+  return( 
+    <main className="profile-page-container">
     {userLogin.length ?
     <>
     <h1>Profile for {userLogin[0].username}</h1>
@@ -24,12 +25,16 @@ export default function Profile({articlesList}){
         <button onClick={handleLogout}>Logout</button>
       </article>
     </section>
+    <h2>Publish Your Latest Thoughts</h2>
+    <Link to="/articles/new"><button>Publish a new article</button></Link>
     <h2>Here are your published articles</h2>
+    <div className="articles-two-grid">
     {articlesList.map((article) => (
       article.author === userLogin[0].username ?
         <ArticleListItem key={article.article_id} article={article} />
         : null
       ))}
+      </div>
       </>
       : 
       <>
@@ -37,7 +42,7 @@ export default function Profile({articlesList}){
       <button onClick={(() => {navigate('/login')})}>Login Here</button>
       </>
       }
-    </>
+      </main>
   )
 
 }

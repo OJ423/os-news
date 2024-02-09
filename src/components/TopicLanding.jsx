@@ -11,7 +11,7 @@ export default function TopicLanding({sortByQuery, searchParams, setSearchParams
   const [err, setErr] = useState(null)
 
   useEffect(() => {
-    fetchArticles(sortByQuery, orderQuery, topic)
+    fetchArticles(sortByQuery, orderQuery, topic, null)
     .then((responseArticles) => {
       setFilteredArticles(responseArticles)
       setIsLoading(false)
@@ -29,9 +29,11 @@ export default function TopicLanding({sortByQuery, searchParams, setSearchParams
     err ? <p className="error-message">{err}</p> :
     <>
     <SortSection topic={topic} setSearchParams={setSearchParams} searchParams={searchParams} sortByQuery={sortByQuery} />
+    <section className="articles-container">
     {filteredArticles.map((article) => (
       <ArticleListItem key={article.article_id} article={article}/>
     ))}
+    </section>
     </>
   }
   </>)

@@ -40,6 +40,14 @@ export function patchArticleVote(article_id, vote) {
   })
 }
 
+export function postNewArticle(body) {
+  return instance
+  .post(`articles`, body)
+  .then((response) => {
+    return response.data.article
+  })
+}
+
 export function deleteArticle(article_id) {
   return instance
   .delete(`articles/${article_id}`)
