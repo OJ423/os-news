@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { patchArticleVote } from "./utils"
+import RenderToggleContext from "./context/RenderToggleContext"
 
 export default function AddVote({selectedArticle, setVoteCount}) {
+  const {render, setRender} = useContext(RenderToggleContext)
   const [hasVoted, setHasVoted] = useState(false)
   const [err, setErr] = useState(null)
   let voteArr = []
@@ -11,6 +13,7 @@ export default function AddVote({selectedArticle, setVoteCount}) {
     voteArr.push(selectedArticle.article_id)
     voteArr.includes(selectedArticle.article_id) ? setHasVoted(true) : setHasVoted(false)
     setErr(null)
+    setRender(!render)
     patchArticleVote(selectedArticle.article_id, 1).then((response) => {
     })
     .catch((err) => {

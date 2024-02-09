@@ -1,9 +1,11 @@
 import { useContext, useState } from "react"
 import LoginContext from "./context/LoginContext"
 import { postNewArticle } from "./utils"
+import RenderToggleContext from "./context/RenderToggleContext"
 
 export default function({topics}) {
   const {userLogin, setUserLogin} = useContext(LoginContext)
+  const {render, setRender} = useContext(RenderToggleContext)
   const [err, setErr] = useState(null)
   const [newTitle, setNewTitle] = useState("")
   const [newTopic, setNewTopic] = useState("")
@@ -24,6 +26,7 @@ export default function({topics}) {
       postNewArticle(body)
       .then((responseArticle) => {
         setNewArticle([responseArticle])
+        setRender(!render)
       })
       setNewTitle("")
       setNewTopic("Please Choose")

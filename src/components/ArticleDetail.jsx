@@ -2,9 +2,11 @@ import { useContext, useState } from "react"
 import AddVote from "./AddVote"
 import LoginContext from "./context/LoginContext"
 import { deleteArticle } from "./utils"
+import RenderToggleContext from "./context/RenderToggleContext"
 
 export default function ArticleDetail({selectedArticle, setArticleDeleted}) {
   const {userLogin, setUserLogin} = useContext(LoginContext)
+  const {render, setRender} = useContext(RenderToggleContext)
   const [err, setErr] = useState(null)
   const [voteCount, setVoteCount] = useState(selectedArticle.votes)
 
@@ -16,6 +18,7 @@ export default function ArticleDetail({selectedArticle, setArticleDeleted}) {
     .catch((err) => {
       setErr("Something went wrong. Please refresh the page and try again.")
       setArticleDeleted(null)
+      setRender(!render)
     })
   }
 

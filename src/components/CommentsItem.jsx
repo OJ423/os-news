@@ -2,9 +2,11 @@ import {useContext, useState} from 'react'
 import LoginContext from './context/LoginContext'
 import {deleteComment} from './utils'
 import AddVoteComment from './AddVoteComment'
+import RenderToggleContext from './context/RenderToggleContext'
 
 export default function CommentsItem({comment, selectedArticle}) {
   const {userLogin} = useContext(LoginContext)
+  const {render, setRender} = useContext(RenderToggleContext)
   const [isDeleted, setIsDeleted] = useState(null)
   const [voteCount, setVoteCount] = useState(comment.votes)
   const [err, setErr] = useState(null)
@@ -13,13 +15,14 @@ export default function CommentsItem({comment, selectedArticle}) {
     deleteComment(comment.comment_id)
     .then((response) => {
       setIsDeleted("Comment deleted")
+      setRender(!render)
     })
     .catch((err) => {
       setErr("Something went wrong. Please refresh the page and try again.")
       setIsDeleted(null)
     })
   }
-  console.log(voteCount)
+  
   return (
   
     <section className="comment-card">

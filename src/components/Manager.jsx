@@ -13,10 +13,12 @@ import LoginContext from './context/LoginContext'
 import TopicLanding from './TopicLanding'
 import Footer from './Footer'
 import ArticlesNew from './ArticlesNew'
+import RenderToggleContext from './context/RenderToggleContext'
 
 export default function Manager() {
   //User Login Context State
   const [userLogin, setUserLogin] = useState([]);
+  const [render, setRender] = useState(false)
   //API Request States
   const [articlesList, setArticlesList] = useState([])
   const [topics, setTopics] = useState([])
@@ -50,10 +52,11 @@ export default function Manager() {
     .catch((err) => {
       setErr("Something went wrong fetching the data. Please refresh and try again.")
     })
-  },[sortByQuery, orderQuery, isArticleDeleted, newTopic, pQuery])
+  },[sortByQuery, orderQuery, isArticleDeleted, newTopic, pQuery, render])
 
   return (<>
   <>
+  <RenderToggleContext.Provider value={{render, setRender}}>
   <LoginContext.Provider value={{ userLogin, setUserLogin }}>
   <Navigation />
   {err ? <p>{err}</p> :
@@ -73,6 +76,7 @@ export default function Manager() {
     </>
   }
   </LoginContext.Provider>
+  </RenderToggleContext.Provider>
   </>
   </>)
 }
